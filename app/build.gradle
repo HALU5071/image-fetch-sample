@@ -1,0 +1,50 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion "26.0.2"
+    defaultConfig {
+        applicationId "io.moatwel.imagedownloadsample"
+        minSdkVersion 21
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        buildConfigField "String", "GLIDE_VERSION", "\"${glide_version}\""
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile "com.android.support:appcompat-v7:$support_lib_version"
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+
+    if (glide_version == '4.2.0') {
+        compile "com.github.bumptech.glide:glide:$glide_version"
+        annotationProcessor "com.github.bumptech.glide:compiler:$glide_version"
+    } else {
+        // Before 4.X
+        compile "com.github.bumptech.glide:glide:$glide_version"
+    }
+
+    // Picasso
+    compile 'com.squareup.picasso:picasso:2.5.2'
+
+    testCompile 'junit:junit:4.12'
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+}
+repositories {
+    mavenCentral()
+}

@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">ImageDownLoadSample</string>
+
+    <string name="str_glide">Glide %1$s</string>
+    <string name="fetch">FETCH</string>
+</resources>
